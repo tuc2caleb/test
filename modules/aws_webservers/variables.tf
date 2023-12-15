@@ -23,10 +23,10 @@ variable "prefix" {
 }
 
 
-# # Variable to signal the current environment 
-# variable "env" {
+# Variable to signal the current environment 
+variable "env" {
 
-#   type        = string
-#   description = "Deployment Environment"
-# }
+  type        = string
+  description = "Deployment Environment"
+}
 
