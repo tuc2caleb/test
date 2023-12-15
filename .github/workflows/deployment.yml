@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "dev", "prod" ]
   pull_request:
-    branches: ["dev"]
+    branches: ["dev", prod]
   pull_request_target:
     branches:
           - dev
@@ -18,7 +18,7 @@ jobs:
   terraform_network:
     name: 'Terraform Network'
     runs-on: ubuntu-latest
-    environment: dev
+    environment: prod
     defaults:
       run:
         shell: bash
@@ -57,13 +57,13 @@ jobs:
       run: terraform plan -input=false
     
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/prod' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
 
   terraform_webserver:
     name: "Terraform Webserver"
     runs-on: ubuntu-latest
-    environment: dev
+    environment: prod
     needs: terraform_network
     defaults:
       run:
