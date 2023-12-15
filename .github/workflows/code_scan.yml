@@ -26,3 +26,4 @@ jobs:
         with:
           sarif_file: 'trivy-results.sarif'
           category: 'code'
+          token: ${{ secrets.GITHUB_TOKEN }}
